@@ -5,42 +5,31 @@
   <h2>The Doze Haven</h2>
 
   <h3>
-    <a href="#"> LATER:
+    <a href="#"> 
       <strong>Demo Website</strong>
     </a>
   </h3>
 
   <div align="center">
-    <a href="#">View Demo</a> LATER:
+    <a href="#">View Demo</a> 
     •
-    <a href="#">Report Bug</a> LATER:
+    <a href="#">Report Bug</a> 
     •
-    <a href="#">Request Feature</a> LATER:
+    <a href="#">Request Feature</a> 
   </div>
 
   <hr>
 
 </div>
 
-<!-- Badges -->
-<div align="center">
-
-<img src="https://img.shields.io/badge/Status-Completed-success?style=flat" alt="Status" />
-
-<a href='https://www.twitter.com/fadayopaul' target="_blank">
-<img alt='Twitter' src='https://img.shields.io/badge/@CodePapa360-100000?style=for-the-badge&logo=Twitter&logoColor=00C9F7&labelColor=3F3F3F&color=0092FA'/>
-</a>
-
-</div>
-
 <!-- Brief -->
-<p align="center">
+<h1 align="center">
 The Doze Haven hotel management app is a full-featured React web application that allows hotel employees to manage cabins, bookings, and guests. The app uses Supabase for its backend and implements a variety of advanced React techniques, such as HOCs, the Compound Component Pattern, and React Query.
-</p>
+</ph1>
 
 <!-- Screenshot -->
 
-<a align="center" href="#"> LATER:
+<a align="center" href="#">
 
 <!-- ![Screenshot](./public/thumbnail-preview.png) -->
 
