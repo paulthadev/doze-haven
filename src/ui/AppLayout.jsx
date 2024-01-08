@@ -3,7 +3,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import styled from "styled-components";
 
-const StlyedAppLayout = styled.div`
+const StyledAppLayout = styled.div`
   display: grid;
   height: 100vh;
   grid-template-columns: 26rem 1fr;
@@ -17,14 +17,14 @@ const Main = styled.main`
 
 function AppLayout() {
   return (
-    <StlyedAppLayout>
+    <StyledAppLayout>
       <Header />
       <Sidebar />
 
       <Main>
         <Outlet />
       </Main>
-    </StlyedAppLayout>
+    </StyledAppLayout>
   );
 }
 
