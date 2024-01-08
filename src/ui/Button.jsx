@@ -29,6 +29,7 @@ const variations = {
       background-color: var(--color-brand-700);
     }
   `,
+
   secondary: css`
     color: var(--color-grey-600);
     background: var(--color-grey-0);
@@ -38,6 +39,7 @@ const variations = {
       background-color: var(--color-grey-50);
     }
   `,
+
   danger: css`
     color: var(--color-red-100);
     background-color: var(--color-red-700);
@@ -49,21 +51,20 @@ const variations = {
 };
 
 export const Button = styled.button`
-  font-size: 1.4rem;
-  padding: 1.2rem 1.6rem;
-  font-weight: 500;
   border: none;
-
   border-radius: var(--border-radius-sm);
-  background-color: var(--color-brand-500);
-  color: var(--color-brand-50);
   box-shadow: var(--shadow-sm);
 
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--color-brand-700);
-  }
+  /* regular javascript - to match the props from 
+  the selected props used in the component */
+  ${(props) => sizes[props.size]}
+  ${(props) => variations[props.variation]}
 `;
+
+//declaring default props
+Button.defaultProps = {
+  variation: "primary",
+  size: "medium",
+};
 
 export default Button;

@@ -19,4 +19,9 @@ const Row = styled.div`
     `}
 `;
 
+// default way of defining props
+Row.defaultProps = {
+  type: "vertical",
+};
+
 export default Row;
