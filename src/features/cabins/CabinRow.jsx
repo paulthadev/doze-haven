@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteCabin } from "../../services/apiCabins";
 
 const TableRow = styled.div`
   display: grid;
@@ -41,8 +43,39 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
-  const { name, maxCapacity, regularPrice, discount, description, image } =
-    cabin;
+  const {
+    id: cabinId,
+    name,
+    maxCapacity,
+    regularPrice,
+    discount,
+    description,
+    image,
+  } = cabin;
+
+  // NOTE: Deleting a cabin using (useMutation)
+
+  /* 1. we need access the queryClient, to be able to match the querykey.
+     2. Using "useMutation()", we destructure the isLoading state & mutate funtion.
+      The mutuate function would be called in the button and the cabin ID is passed.
+      WHile the deleteCabin function from the api is called on the mutationFn object.
+  3. Then, we call the "invalidateQueries" on the "onSucess" object.
+      The "inValidateQueries" is to be able to refresh the query state
+      after deletion and update the UI */
+
+  const queryClient = useQueryClient();
+
+  const { isLoading, mutate } = useMutation({
+    mutationFn: deleteCabin,
+    onSuccess: () => {
+      alert("Cabin deleted successfully");
+
+      queryClient.invalidateQueries({
+        queryKey: ["cabins"],
+      });
+    },
+    onError: (error) => alert(error.message),
+  });
 
   return (
     <TableRow role="row">
@@ -51,7 +84,10 @@ function CabinRow({ cabin }) {
       <div>Fits up to {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
-      <button>Delete</button>
+
+      <button onClick={() => mutate(cabinId)} disabled={isLoading}>
+        Delete
+      </button>
     </TableRow>
   );
 }

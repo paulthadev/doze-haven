@@ -29,12 +29,14 @@ const TableHeader = styled.header`
 `;
 
 function CabinTable() {
+  //NOTE: using the reactQuery to fetch query (useQuery)
+
   const {
     data: cabins,
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["cabin"],
+    queryKey: ["cabins"],
     queryFn: getCabins,
   });
 
