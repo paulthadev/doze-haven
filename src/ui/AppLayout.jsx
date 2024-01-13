@@ -22,6 +22,8 @@ const Container = styled.div`
 const Main = styled.main`
   background: var(--color-grey-50);
   padding: 4rem 4.8rem 6.4rem;
+
+  overflow: scroll;
 `;
 
 function AppLayout() {
