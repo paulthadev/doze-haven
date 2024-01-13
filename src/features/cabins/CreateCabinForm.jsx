@@ -11,10 +11,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow";
 
-const Label = styled.label`
-  font-weight: 500;
-`;
-
 function CreateCabinForm() {
   // NOTE:setting up react-hook-form
   const { register, handleSubmit, reset, getValues, formState } = useForm();
