@@ -57,10 +57,10 @@ function CabinRow({ cabin }) {
   // NOTE: Deleting a cabin using (useMutation)
 
   /* 1. we need access the queryClient, to be able to match the querykey.
-     2. Using "useMutation()", we destructure the isLoading state & mutate funtion.
+     2. Using "useMutation()", we destructure the isLoading state & mutate function.
       The mutuate function would be called in the button and the cabin ID is passed.
       WHile the deleteCabin function from the api is called on the mutationFn object.
-  3. Then, we call the "invalidateQueries" on the "onSucess" object.
+  3. Then, we call the "invalidateQueries" on the "onSuccess" object.
       The "inValidateQueries" is to be able to refresh the query state
       after deletion and update the UI */
 
