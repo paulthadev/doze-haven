@@ -67,7 +67,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow label="Cabin name" error={errors?.name?.message}>
+      <FormRow label="Cabin name">
         <Input
           type="text"
           id="name"
@@ -115,8 +115,8 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           type="number"
           id="discount"
           disabled={isWorking}
+          defaultValue={0}
           {...register("discount", {
-            required: "This field is required",
             validate: (value) =>
               Number(value) <= Number(getValues()?.regularPrice) ||
               "Discount should be less than regular price",
