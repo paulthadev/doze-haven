@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import styled from "styled-components";
-import toast from "react-hot-toast";
 
 import CreateCabinForm from "./CreateCabinForm";
 import { formatCurrency } from "../../utils/helpers";
-import { deleteCabin } from "../../services/apiCabins";
+import { useDeleteCabin } from "./useDeleteCabin";
 
 const TableRow = styled.div`
   display: grid;
@@ -48,6 +46,7 @@ const Discount = styled.div`
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
+  const { isDeleting, deleteCabin } = useDeleteCabin();
 
   const {
     id: cabinId,
@@ -55,33 +54,8 @@ function CabinRow({ cabin }) {
     maxCapacity,
     regularPrice,
     discount,
-    description,
     image,
   } = cabin;
-
-  // NOTE: Deleting a cabin using (useMutation)
-
-  /* 1. we need access the queryClient, to be able to match the querykey.
-     2. Using "useMutation()", we destructure the isLoading state & mutate function.
-      The mutuate function would be called in the button and the cabin ID is passed.
-      WHile the deleteCabin function from the api is called on the mutationFn object.
-  3. Then, we call the "invalidateQueries" on the "onSuccess" object.
-      The "inValidateQueries" is to be able to refresh the query state
-      after deletion and update the UI */
-
-  const queryClient = useQueryClient();
-
-  const { mutate, isLoading } = useMutation({
-    mutationFn: deleteCabin,
-    onSuccess: () => {
-      toast.success("Cabin deleted successfully");
-
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-    },
-    onError: (error) => toast.error(error.message),
-  });
 
   return (
     <>
@@ -90,12 +64,17 @@ function CabinRow({ cabin }) {
         <Cabin>{name}</Cabin>
         <div>Fits up to {maxCapacity} guests</div>
         <Price>{formatCurrency(regularPrice)}</Price>
-        <Discount>{formatCurrency(discount)}</Discount>
+
+        {discount ? (
+          <Discount>{formatCurrency(discount)}</Discount>
+        ) : (
+          <span>&mdash;</span>
+        )}
 
         <div>
           <button onClick={() => setShowForm((show) => !show)}>Edit</button>
 
-          <button onClick={() => mutate(cabinId)} disabled={isLoading}>
+          <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}>
             Delete
           </button>
         </div>
