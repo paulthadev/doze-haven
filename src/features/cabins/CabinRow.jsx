@@ -1,8 +1,11 @@
-import styled from "styled-components";
-import { formatCurrency } from "../../utils/helpers";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteCabin } from "../../services/apiCabins";
+import styled from "styled-components";
 import toast from "react-hot-toast";
+
+import CreateCabinForm from "./CreateCabinForm";
+import { formatCurrency } from "../../utils/helpers";
+import { deleteCabin } from "../../services/apiCabins";
 
 const TableRow = styled.div`
   display: grid;
@@ -44,6 +47,8 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
+  const [showForm, setShowForm] = useState(false);
+
   const {
     id: cabinId,
     name,
@@ -66,7 +71,7 @@ function CabinRow({ cabin }) {
 
   const queryClient = useQueryClient();
 
-  const { isLoading, mutate } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: deleteCabin,
     onSuccess: () => {
       toast.success("Cabin deleted successfully");
@@ -79,17 +84,25 @@ function CabinRow({ cabin }) {
   });
 
   return (
-    <TableRow role="row">
-      <img src={image} />
-      <Cabin>{name}</Cabin>
-      <div>Fits up to {maxCapacity} guests</div>
-      <Price>{formatCurrency(regularPrice)}</Price>
-      <Discount>{formatCurrency(discount)}</Discount>
+    <>
+      <TableRow role="row">
+        <Img src={image} />
+        <Cabin>{name}</Cabin>
+        <div>Fits up to {maxCapacity} guests</div>
+        <Price>{formatCurrency(regularPrice)}</Price>
+        <Discount>{formatCurrency(discount)}</Discount>
 
-      <button onClick={() => mutate(cabinId)} disabled={isLoading}>
-        Delete
-      </button>
-    </TableRow>
+        <div>
+          <button onClick={() => setShowForm((show) => !show)}>Edit</button>
+
+          <button onClick={() => mutate(cabinId)} disabled={isLoading}>
+            Delete
+          </button>
+        </div>
+      </TableRow>
+
+      {showForm && <CreateCabinForm cabinToEdit={cabin} />}
+    </>
   );
 }
 
