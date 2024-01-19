@@ -5,7 +5,7 @@
   <h2>The Doze Haven</h2>
 
   <h3>
-    <a href="[#](https://dozehaven.vercel.app/cabins)"> 
+    <a href="https://dozehaven.vercel.app/cabins"> 
       <strong>Demo Website</strong>
     </a>
   </h3>
