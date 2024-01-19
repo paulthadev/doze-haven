@@ -11,11 +11,11 @@
   </h3>
 
   <div align="center">
-    <a href="#">View Demo</a> 
+    <a href="https://dozehaven.vercel.app/cabins">View Demo</a> 
     •
-    <a href="#">Report Bug</a> 
+    <a href="https://github.com/fadayopaul/doze-haven/issues">Report Bug</a> 
     •
-    <a href="#">Request Feature</a> 
+    <a href="https://github.com/fadayopaul/doze-haven/issues">Request Feature</a> 
   </div>
 
   <hr>
@@ -43,7 +43,6 @@ The Doze Haven hotel management app is a full-featured React web application tha
   - [What I learned](#what-i-learned)
 - [Installation](#installation)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Key Features
 
