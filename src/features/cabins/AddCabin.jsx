@@ -5,8 +5,6 @@ import Modal from "../../ui/Modal";
 import CabinTable from "./CabinTable";
 
 function AddCabin() {
-  const [isOpenModal, setIsOpenModal] = useState(false);
-
   return (
     <Modal>
       <Modal.Open opens="cabin-form">
