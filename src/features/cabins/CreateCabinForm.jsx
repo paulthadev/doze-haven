@@ -9,7 +9,7 @@ import FileInput from "../../ui/FileInput";
 import { useEditCabin } from "./useEditCabin";
 import { useCreateCabin } from "./useCreateCabin";
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   /* Create and Edit a cabin (custom Hooks) */
   const { createCabin, isCreating } = useCreateCabin();
   const { editCabin, isEdititng } = useEditCabin();
@@ -34,15 +34,31 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     if (isEditSession) {
       editCabin(
         { newCabinData: { ...data, image }, id: editID },
-        { onSuccess: () => reset() }
+        {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        }
       );
     } else {
-      createCabin({ ...data, image: image }, { onSuccess: () => reset() });
+      createCabin(
+        { ...data, image: image },
+        {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        }
+      );
     }
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      type={onCloseModal ? "modal" : "regular"}
+    >
       <FormRow label="Cabin name">
         <Input
           type="text"
@@ -92,6 +108,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           id="discount"
           disabled={isWorking}
           defaultValue={0}
+          min={0}
           {...register("discount", {
             validate: (value) =>
               Number(value) <= Number(getValues()?.regularPrice) ||
@@ -127,7 +144,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button
+          variation="secondary"
+          type="reset"
+          onClick={() => onCloseModal?.()}
+        >
           Cancel
         </Button>
         <Button disabled={isWorking}>
