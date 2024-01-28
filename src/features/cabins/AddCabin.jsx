@@ -1,5 +1,4 @@
 import Button from "../../ui/Button";
-import { useState } from "react";
 import CreateCabinForm from "../../features/cabins/CreateCabinForm";
 import Modal from "../../ui/Modal";
 import CabinTable from "./CabinTable";
