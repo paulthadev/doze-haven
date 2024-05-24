@@ -137,7 +137,7 @@ By building "The Wild Oasis" project with these technologies and concepts, I've 
 - Clone this repo:
 
 ```sh
-git clone https://github.com/fadayopaul/dove-haven.git
+git clone https://github.com/paulthadev/dove-haven.git
 ```
 
 - Install dependencies:
