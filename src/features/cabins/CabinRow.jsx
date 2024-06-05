@@ -62,7 +62,6 @@ function CabinRow({ cabin }) {
       description,
     });
   }
-
   return (
     <>
       <Table.Row>
