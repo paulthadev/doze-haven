@@ -13,9 +13,9 @@
   <div align="center">
     <a href="https://dozehaven.vercel.app/cabins">View Demo</a> 
     •
-    <a href="https://github.com/fadayopaul/doze-haven/issues">Report Bug</a> 
+    <a href="https://github.com/paulthadev/doze-haven/issues">Report Bug</a> 
     •
-    <a href="https://github.com/fadayopaul/doze-haven/issues">Request Feature</a> 
+    <a href="https://github.com/paulthadev/doze-haven/issues">Request Feature</a> 
   </div>
 
   <hr>
@@ -137,7 +137,7 @@ By building "The Wild Oasis" project with these technologies and concepts, I've 
 - Clone this repo:
 
 ```sh
-git clone https://github.com/fadayopaul/dove-haven.git
+git clone https://github.com/paulthadev/dove-haven.git
 ```
 
 - Install dependencies:
